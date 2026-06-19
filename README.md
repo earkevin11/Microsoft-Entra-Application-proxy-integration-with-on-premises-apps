@@ -15,6 +15,8 @@
 - [Traditional scenarios (what orgs used before App Proxy)](#traditional-scenarios-what-orgs-used-before-app-proxy)
 - [Limitations and considerations](#limitations-and-considerations)
 - [Implementation checklist (quick)](#implementation-checklist-quick)
+- [Practical use cases & scenarios](#practical-use-cases--scenarios)
+- [Primary benefit and context](#primary-benefit-and-context)
 - [TLDR (expanded with contrasts)](#tldr-expanded-with-contrasts)
 - [Example resources and links](#example-resources-and-links)
 
@@ -100,6 +102,50 @@ Entra Application Proxy publishes on‑prem web apps securely through Microsoft 
 - Configure enterprise application in Entra and set external/internal URLs.  
 - Configure Conditional Access (MFA, device compliance, session controls) targeting the published app.  
 - Test in a pilot, monitor sign-ins and connector logs, then roll out.
+
+<a id="practical-use-cases--scenarios"></a>
+## Practical use cases & scenarios
+
+### TL;DR
+- Primary benefit: publish on‑prem web apps using identity‑first controls — SSO + Conditional Access + MFA — without opening inbound firewall ports or giving broad network/VPN access.
+
+### 1) Remote employees need convenient, secure access
+- Example: intranet, HR portal, BI/reporting dashboards.  
+- Why: quick publish, SSO, enforce MFA/device compliance, no VPN client required for many users.
+
+### 2) Contractors, partners, or vendors with scoped access
+- Example: external accountants access payroll app for a fixed engagement.  
+- Why: time‑bounded guest accounts, per‑app CA policies, avoid creating VPN accounts or broader network access.
+
+### 3) Legacy apps lacking modern auth
+- Example: older apps using forms auth or NTLM.  
+- Why: App Proxy enables SSO patterns (preauth, passthrough, or KCD) so you can secure access without rewriting the app.
+
+### 4) Migrations, pilots, and fast publishing
+- Example: pilot cloud migration by publishing the legacy app via App Proxy while planning rehosting.  
+- Why: minimal network changes, fast to deploy, controlled access.
+
+### 5) Scoped admin or vendor access (least‑privilege)
+- Example: external support requiring access to an internal admin console.  
+- Why: give only the app endpoint, enforce strict CA policies and logging.
+
+### 6) Replace fragile reverse proxies or DMZ publishes
+- Example: aging WAP with exposed ports and cert maintenance.  
+- Why: connectors make outbound TLS connections (no inbound holes), reduce cert/dns maintenance.
+
+### When NOT to use App Proxy
+- Non‑HTTP(S) protocols (RDP, SMB, arbitrary TCP/UDP) — use GSA or network tunnels.  
+- Very high throughput/large file transfers without testing connector capacity.  
+- Need full network-level connectivity for clients — use VPN/site‑to‑site for L3/L4 access.
+
+<a id="primary-benefit-and-context"></a>
+## Primary benefit and context
+
+App Proxy’s core value is moving trust from “on the network” to “who the identity is and the state of the device.” Instead of saying “if you’re on the corporate IP you’re allowed,” you enforce per‑user, per‑device, per‑app controls in Entra (MFA, device compliance, session controls). This:
+
+- Reduces attack surface (no inbound holes, no broad network access).  
+- Centralizes enforcement and auditing via Entra (one place to require MFA, block risky sign‑ins, enable session controls).  
+- Improves user experience (SSO, often no VPN client required).
 
 <a id="tldr-expanded-with-contrasts"></a>
 ## TLDR (expanded with contrasts)
