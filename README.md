@@ -2,19 +2,43 @@
 
 ## Table of Contents
 
-- [TL;DR](#tldr)
-- [Source / further reading](#source--further-reading)
-- [Why implement Microsoft Entra Application Proxy](#why-implement-microsoft-entra-application-proxy)
-- [Core use cases](#core-use-cases)
-- [Benefits (business and technical)](#benefits-business-and-technical)
-- [How it works (high level)](#how-it-works-high-level)
-- [Key concepts](#key-concepts)
-- [When to use Application Proxy vs alternatives](#when-to-use-application-proxy-vs-alternatives)
-- [Traditional scenarios (what orgs used before App Proxy)](#traditional-scenarios-what-orgs-used-before-app-proxy)
-- [Limitations and considerations](#limitations-and-considerations)
-- [Implementation checklist (quick)](#implementation-checklist-quick)
-- [TL;DR (expanded with contrasts)](#tldr-expanded-with-contrasts)
+# Microsoft Entra Application Proxy
+
+> Readme: Integrate on‑premises applications with Microsoft Entra Application Proxy (formerly Azure AD Application Proxy).
+
+## Table of Contents
+
+- [TL;DR](#tldr)  
+- [Source / further reading](#source-and-further-reading)  
+- [Why implement Microsoft Entra Application Proxy](#why-implement-microsoft-entra-application-proxy)  
+- [Core use cases](#core-use-cases)  
+- [Benefits (business and technical)](#benefits-business-and-technical)  
+- [How it works (high level)](#how-it-works-high-level)  
+- [Key concepts](#key-concepts)  
+- [When to use Application Proxy vs alternatives](#when-to-use-application-proxy-vs-alternatives)  
+- [Traditional scenarios (what orgs used before App Proxy)](#traditional-scenarios-what-orgs-used-before-app-proxy)  
+- [Limitations and considerations](#limitations-and-considerations)  
+- [Implementation checklist (quick)](#implementation-checklist-quick)  
+- [TL;DR (expanded with contrasts)](#tldr-expanded-with-contrasts)  
 - [Example resources and links](#example-resources-and-links)
+
+
+## TL;DR {#tldr}
+
+Entra Application Proxy publishes on‑prem web apps securely through Microsoft Entra so users can access them with SSO and Conditional Access — instead of opening inbound firewall ports or granting broad VPN access.
+
+## Source / further reading {#source-and-further-reading}
+
+... (rest of file follows) ...
+
+## Key concepts {#key-concepts}
+
+- **Connector**: on‑prem agent that creates outbound tunnels to Entra and proxies approved requests.  
+- **Preauthentication**: Entra can preauthenticate users (Azure AD) before forwarding requests, or allow passthrough authentication to the app.  
+- **External URL**: the published endpoint users access.  
+- **Internal URL**: the backend app address reachable by the connector.
+
+... (rest of file follows) ...
 
 > Readme: Integrate on‑premises applications with Microsoft Entra Application Proxy (formerly Azure AD Application Proxy).
 
